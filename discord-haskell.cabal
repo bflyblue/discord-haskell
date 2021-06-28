@@ -64,6 +64,7 @@ library
                      , Discord.Internal.Types.Events
                      , Discord.Internal.Types.Gateway
                      , Discord.Internal.Types.Guild
+                     , Discord.Internal.Types.GuildMember
                      , Discord.Internal.Types.User
                      , Discord.Internal.Types.Embed
   build-depends:

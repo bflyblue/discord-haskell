@@ -10,27 +10,8 @@ import qualified Data.Text as T
 
 import Discord.Internal.Types.Prelude
 import Discord.Internal.Types.Channel (Channel, Emoji)
+import Discord.Internal.Types.GuildMember (GuildMember)
 import Discord.Internal.Types.User (User)
-
--- | Representation of a guild member.
-data GuildMember = GuildMember
-      { memberUser     :: User
-      , memberNick     :: Maybe T.Text
-      , memberRoles    :: [Snowflake]
-      , memberJoinedAt :: UTCTime
-      , memberDeaf     :: Bool
-      , memberMute     :: Bool
-      } deriving (Show, Eq, Ord)
-
-instance FromJSON GuildMember where
-  parseJSON = withObject "GuildMember" $ \o ->
-    GuildMember <$> o .:  "user"
-                <*> o .:? "nick"
-                <*> o .:  "roles"
-                <*> o .:  "joined_at"
-                <*> o .:  "deaf"
-                <*> o .:  "mute"
-
 
 -- https://discord.com/developers/docs/resources/guild#guild-object
 

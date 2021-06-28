@@ -16,6 +16,7 @@ import qualified Data.Text as T
 import Discord.Internal.Types.Prelude
 import Discord.Internal.Types.Channel
 import Discord.Internal.Types.Guild
+import Discord.Internal.Types.GuildMember
 import Discord.Internal.Types.User (User)
 
 

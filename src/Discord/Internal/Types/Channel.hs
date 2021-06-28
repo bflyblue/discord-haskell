@@ -13,6 +13,7 @@ import Data.Time.Clock
 import qualified Data.Text as T
 
 import Discord.Internal.Types.Prelude
+import Discord.Internal.Types.GuildMember (GuildMember(..))
 import Discord.Internal.Types.User (User(..))
 import Discord.Internal.Types.Embed
 
@@ -265,6 +266,7 @@ data Message = Message
                                            --   was sent in
   , messageAuthor       :: User            -- ^ The 'User' the message was sent
                                            --   by
+  , messageMember       :: Maybe GuildMember -- ^ Member properties for this author
   , messageText         :: Text            -- ^ Contents of the message
   , messageTimestamp    :: UTCTime         -- ^ When the message was sent
   , messageEdited       :: Maybe UTCTime   -- ^ When/if the message was edited
@@ -296,6 +298,7 @@ instance FromJSON Message where
                     case isW :: Maybe WebhookId of
                       Nothing -> pure a
                       Just _ -> pure $ a { userIsWebhook = True })
+            <*> o .:? "member"
             <*> o .:? "content" .!= ""
             <*> o .:? "timestamp" .!= epochTime
             <*> o .:? "edited_timestamp"
